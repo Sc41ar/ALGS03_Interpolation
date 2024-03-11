@@ -4,6 +4,7 @@ import java.util.List;
 
 public class ArgsParser {
     void processArgs(String[] args){
+        FileParser fileParser = new FileParser();
 
 
         for (int i = 0; i < args.length; i++) {
