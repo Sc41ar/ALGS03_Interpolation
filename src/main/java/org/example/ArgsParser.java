@@ -1,6 +1,5 @@
 package org.example;
 
-import javax.swing.tree.RowMapper;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -17,9 +16,11 @@ public class ArgsParser {
                         int[] funcArgs = fileParser.getArray(lines.get(0));
                         int[] funcValues = fileParser.getArray(lines.get(1));
                         LagComputer lagComputer = new LagComputer(funcArgs, funcValues);
+                        //TODO добавить sout
                         Scanner s = new Scanner(System.in);
                         var input = s.nextDouble();
                         double y = lagComputer.computeValueAtPoint(input);
+                        System.out.println(lagComputer.getInterpolationPolynomial());
                         System.out.println(y);
                     } else {
                         System.out.println("Ошибка при вводе файла таблицы");
@@ -49,13 +50,17 @@ public class ArgsParser {
                     int chosenFunc = s.nextInt();
                     switch (chosenFunc) {
                         case 1:
-                            calcFirstFunc(funcArgs, funcValues); break;
+                            calcFirstFunc(funcArgs, funcValues);
+                            break;
                         case 2:
-                            calcSecondFunc(funcArgs, funcValues);break;
+                            calcSecondFunc(funcArgs, funcValues);
+                            break;
                         case 3:
-                            calcThirdFunc(funcArgs, funcValues);break;
+                            calcThirdFunc(funcArgs, funcValues);
+                            break;
                         case 4:
-                            calcFourthFunc(funcArgs, funcValues);break;
+                            calcFourthFunc(funcArgs, funcValues);
+                            break;
                     }
                     System.out.println(Arrays.stream(funcValues).boxed().toList());
                 }
