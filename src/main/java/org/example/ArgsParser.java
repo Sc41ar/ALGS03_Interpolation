@@ -63,6 +63,11 @@ public class ArgsParser {
                             break;
                     }
                     System.out.println(Arrays.stream(funcValues).boxed().toList());
+                    int[] integerValues = String.valueOf(funcValues).replace("\\D", "").chars().map(Character::getNumericValue).toArray();
+                    //перевод массива в целочисленный тип с использованием клсса Stream
+                    //
+                    LagComputer lagComputer = new LagComputer(funcArgs, integerValues);
+                    System.out.println(lagComputer.getInterpolationPolynomial());
                 }
             }
         }
