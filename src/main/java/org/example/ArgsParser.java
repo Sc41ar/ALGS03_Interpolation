@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -14,8 +15,8 @@ public class ArgsParser {
                 case "-table", "-t" -> {
                     List<String> lines = fileParser.readFileLines(args[++i]);
                     if (lines.size() == 2) {
-                        int[] funcArgs = fileParser.getArray(lines.get(0));
-                        int[] funcValues = fileParser.getArray(lines.get(1));
+                        double[] funcArgs = fileParser.getArray(lines.get(0));
+                        double[] funcValues = fileParser.getArray(lines.get(1));
                         LagComputer lagComputer = new LagComputer(funcArgs, funcValues);
                         //TODO добавить sout
                         Scanner s = new Scanner(System.in);
@@ -31,7 +32,7 @@ public class ArgsParser {
                     Scanner s = new Scanner(System.in);
                     System.out.println("Введите адрес файла с массивом значений аргумента");
                     String filePath = s.next();
-                    int[] funcArgs = new int[0];
+                    double[] funcArgs = new double[0];
                     try {
                         //Достаем из файла строки, подразумевается, что пользователь передаст корректный файл
                         // после чего из первой строки достаем массив аргументов
@@ -52,7 +53,7 @@ public class ArgsParser {
                             6: e^-x
                             """);
                     int chosenFunc = s.nextInt();
-                    Function<Integer, Double> cFunc;
+                    Function<Double, Double> cFunc;
                     //в переменную записывается лямбда выражение, в зависимости от того, что выбирает пользователь
                     //потом используя эту переменную вычисляются значения функции в узлах интерполяции
                     switch (chosenFunc) {
@@ -82,18 +83,31 @@ public class ArgsParser {
                     //парметры метода передаются по ссылке
                     //поэтому funcValues изменится
                     calcFuncValues(funcArgs, funcValues, cFunc);
-                    System.out.println(Arrays.stream(funcValues).boxed().toList());//массив переводится в поток, после чего конверируется в список, чтобы иметь возможность вывести в 1 строчку
-                    int[] integerValues = String.valueOf(funcValues).replace("\\D", "").chars().map(Character::getNumericValue).toArray();
-                    //перевод массива в целочисленный тип с использованием клсса Stream
-                    //
-                    LagComputer lagComputer = new LagComputer(funcArgs, integerValues);
+                    System.out.println(Arrays.toString(funcValues));
+                    //                    System.out.println(Arrays.stream(funcValues).boxed().toList());//массив переводится в поток, после чего конверируется в список, чтобы иметь возможность вывести в 1 строчку
+                    LagComputer lagComputer = new LagComputer(funcArgs, funcValues);
                     System.out.println(lagComputer.getInterpolationPolynomial());
+
+                    var valuesclone = funcValues.clone();
+                    //TODO tests
+                    for (int j = 0; j < funcArgs.length; j++) {
+                        List<Double> a = new ArrayList<>(Arrays.stream(funcArgs).boxed().toList());
+                        a.remove(j);
+                        Double[] arrayTempCopy = a.toArray(new Double[0]);
+                        lagComputer.setArgs(arrayTempCopy);
+                        List<Double> b = new ArrayList<>(Arrays.stream(funcValues).boxed().toList());
+                        b.remove(j);
+                        Double[] arrayCopy = b.toArray(b.toArray(new Double[0]));
+                        lagComputer.setValues(arrayCopy);
+                        valuesclone[j] = lagComputer.computeValueAtPoint(funcArgs[j]);
+                    }
+                    System.out.println(Arrays.toString(valuesclone));
                 }
             }
         }
     }
 
-    private void calcFuncValues(int[] funcArgs, double[] funcValues, Function<Integer, Double> computingFunc) {
+    private void calcFuncValues(double[] funcArgs, double[] funcValues, Function<Double, Double> computingFunc) {
         for (int i = 0; i < funcArgs.length; i++) {
             funcValues[i] = computingFunc.apply(funcArgs[i]);
         }

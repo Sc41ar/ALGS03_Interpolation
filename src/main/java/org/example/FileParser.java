@@ -23,12 +23,12 @@ public class FileParser {
         }
     }
 
-    public int[] getArray(String s) {
+    public double[] getArray(String s) {
         String[] words = s.split("[ ,]");
-        int[] resultArray = new int[words.length];
+        double[] resultArray = new double[words.length];
         for (int i = 0; i < words.length; i++) {
             try {
-                resultArray[i] = Integer.parseInt(words[i]);
+                resultArray[i] = Double.parseDouble(words[i]);
             }catch (Exception e){
                 System.out.println(e.getMessage());
                 resultArray[i] = 0;
