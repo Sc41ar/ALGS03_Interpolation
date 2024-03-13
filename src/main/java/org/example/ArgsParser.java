@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Function;
+import java.util.stream.IntStream;
 
 public class ArgsParser {
     void processArgs(String[] args) {
@@ -84,9 +85,25 @@ public class ArgsParser {
                     //поэтому funcValues изменится
                     calcFuncValues(funcArgs, funcValues, cFunc);
                     System.out.println(Arrays.toString(funcValues));
-                    //                    System.out.println(Arrays.stream(funcValues).boxed().toList());//массив переводится в поток, после чего конверируется в список, чтобы иметь возможность вывести в 1 строчку
                     LagComputer lagComputer = new LagComputer(funcArgs, funcValues);
                     System.out.println(lagComputer.getInterpolationPolynomial());
+                    var valuesclone = funcValues.clone();
+                    for (int j = 0; j < funcArgs.length; j++) {
+                        List<Double> a = new ArrayList<>(Arrays.stream(funcArgs).boxed().toList());
+                        a.remove(j);
+                        Double[] arrayTempCopy = a.toArray(new Double[0]);
+                        lagComputer.setArgs(arrayTempCopy);
+                        List<Double> b = new ArrayList<>(Arrays.stream(funcValues).boxed().toList());
+                        b.remove(j);
+                        Double[] arrayCopy = b.toArray(b.toArray(new Double[0]));
+                        lagComputer.setValues(arrayCopy);
+                        valuesclone[j] = lagComputer.computeValueAtPoint(funcArgs[j]);
+                    }
+                    //Используя потоки производим операции вычисления отклонения над всеми значениями
+                    double[] deviation = IntStream.range(0, funcValues.length)
+                            .mapToDouble(j -> Math.abs(valuesclone[j] - funcValues[j]))
+                            .toArray();
+                    System.out.println("Вычисленные отклонения: "+Arrays.toString(deviation));
                 }
             }
         }
