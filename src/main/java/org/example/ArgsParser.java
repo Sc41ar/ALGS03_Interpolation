@@ -3,6 +3,7 @@ package org.example;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Function;
 
 public class ArgsParser {
     void processArgs(String[] args) {
@@ -39,30 +40,49 @@ public class ArgsParser {
                         //вывод информации о возможной ошибке
                         System.out.println(e.getMessage());
                     }
+                    //создается массив для значение аналогичной с массивом аргументов длины
                     double[] funcValues = new double[funcArgs.length];
                     System.out.println("""
                             Выберите функцию
                             1: 3x^2 - 2x + 1
-                            2: sin(2x)
+                            2: sin(x)
                             3: e^x
                             4: sqrt(3x + 4)
+                            5: abs(x)
+                            6: e^-x
                             """);
                     int chosenFunc = s.nextInt();
+                    Function<Integer, Double> cFunc;
+                    //в переменную записывается лямбда выражение, в зависимости от того, что выбирает пользователь
+                    //потом используя эту переменную вычисляются значения функции в узлах интерполяции
                     switch (chosenFunc) {
-                        case 1:
-                            calcFirstFunc(funcArgs, funcValues);
-                            break;
-                        case 2:
-                            calcSecondFunc(funcArgs, funcValues);
-                            break;
-                        case 3:
-                            calcThirdFunc(funcArgs, funcValues);
-                            break;
-                        case 4:
-                            calcFourthFunc(funcArgs, funcValues);
-                            break;
+                        case 1 -> {
+                            cFunc = (x) -> (double) ((3 * x * x) - (x * 2) + 1);
+                        }
+                        case 2 -> {
+                            cFunc = (x) -> Math.sin(x);
+                        }
+                        case 3 -> {
+                            cFunc = (x) -> Math.exp(x);
+                        }
+                        case 4 -> {
+                            cFunc = (x) -> Math.sqrt(3 * x + 4);
+                        }
+                        case 5 -> {
+                            cFunc = (x) -> (double) Math.abs(x);
+                        }
+                        case 6 -> {
+                            cFunc = (x) -> Math.exp(-x);
+                        }
+                        default -> {
+                            cFunc = (x) -> (double) x;
+                        }
+
                     }
-                    System.out.println(Arrays.stream(funcValues).boxed().toList());
+                    //парметры метода передаются по ссылке
+                    //поэтому funcValues изменится
+                    calcFuncValues(funcArgs, funcValues, cFunc);
+                    System.out.println(Arrays.stream(funcValues).boxed().toList());//массив переводится в поток, после чего конверируется в список, чтобы иметь возможность вывести в 1 строчку
                     int[] integerValues = String.valueOf(funcValues).replace("\\D", "").chars().map(Character::getNumericValue).toArray();
                     //перевод массива в целочисленный тип с использованием клсса Stream
                     //
@@ -73,29 +93,10 @@ public class ArgsParser {
         }
     }
 
-    private void calcFourthFunc(int[] funcArgs, double[] funcValues) {
+    private void calcFuncValues(int[] funcArgs, double[] funcValues, Function<Integer, Double> computingFunc) {
         for (int i = 0; i < funcArgs.length; i++) {
-            funcValues[i] = Math.sqrt(3 * funcArgs[i] + 4);
+            funcValues[i] = computingFunc.apply(funcArgs[i]);
         }
     }
-
-    private void calcThirdFunc(int[] funcArgs, double[] funcValues) {
-        for (int i = 0; i < funcArgs.length; i++) {
-            funcValues[i] = Math.exp(funcArgs[i]);
-        }
-    }
-
-    private void calcSecondFunc(int[] funcArgs, double[] funcValues) {
-        for (int i = 0; i < funcArgs.length; i++) {
-            funcValues[i] = Math.sin(2 * funcArgs[i]);
-        }
-    }
-
-    private void calcFirstFunc(int[] funcArgs, double[] funcValues) {
-        for (int i = 0; i < funcArgs.length; i++) {
-            funcValues[i] = 3 * funcArgs[i] * funcArgs[i] - 2 * funcArgs[i] + 1;
-        }
-    }
-
 
 }
