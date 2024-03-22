@@ -1,19 +1,20 @@
 package org.example;
 
 public class LagComputer {
-    private double[] args;
+    private int[] args;
 
-    public void setArgs(double[] args) {
+    public void setArgs(int[] args) {
         this.args = args;
     }
 
-    public void setValues(double[] values) {
+    public void setValues(int[] values) {
         this.values = values;
     }
 
-    private double[] values;
+    private int[] values;
 
-    public LagComputer(double[] args, double[] values) {
+
+    public LagComputer(int[] args, int[] values) {
         this.args = args;
         this.values = values;
     }
@@ -33,6 +34,7 @@ public class LagComputer {
         }
         return sum; // возвращаем значение интерполяционного многочлена в точке x
     }
+
 
     public String getInterpolationPolynomial() {
         StringBuilder sb = new StringBuilder();
@@ -68,17 +70,17 @@ public class LagComputer {
         return sb.toString();
     }
 
-    public void setArgs(Double[] arrayTempCopy) {
-        args = new double[arrayTempCopy.length];
+    public void setArgs(Integer[] arrayTempCopy) {
+        args = new int[arrayTempCopy.length];
         for (int i = 0; i < arrayTempCopy.length; i++) {
             args[i] = arrayTempCopy[i];
         }
     }
 
     public void setValues(Double[] arrayTempCopy) {
-        values = new double[arrayTempCopy.length];
+        values = new int[arrayTempCopy.length];
         for (int i = 0; i < arrayTempCopy.length; i++) {
-            values[i] = arrayTempCopy[i];
+            values[i] = (int)(Math.ceil(arrayTempCopy[i]*1000)/1000);
         }
     }
 }
