@@ -18,7 +18,7 @@ public class ArgsParser {
                     if (lines.size() == 2) {
                         double[] funcArgs = fileParser.getArray(lines.get(0));
                         double[] funcValues = fileParser.getArray(lines.get(1));
-                        LagComputer lagComputer = new LagComputer(funcArgs, funcValues);
+                        SplineCompute splineCompute = new SplineCompute(funcArgs, funcValues);
                         //TODO добавить sout
                         Scanner s = new Scanner(System.in);
                         var input = s.nextDouble();
@@ -85,7 +85,7 @@ public class ArgsParser {
                     //поэтому funcValues изменится
                     calcFuncValues(funcArgs, funcValues, cFunc);
                     System.out.println(Arrays.toString(funcValues));
-                    LagComputer lagComputer = new LagComputer(funcArgs, funcValues);
+                    SplineCompute lagComputer = new SplineCompute(funcArgs, funcValues);
                     System.out.println(lagComputer.getInterpolationPolynomial());
                     var valuesclone = funcValues.clone();
                     for (int j = 0; j < funcArgs.length; j++) {
