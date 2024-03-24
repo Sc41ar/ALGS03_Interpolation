@@ -114,6 +114,18 @@ public class SplineCompute {
         }
     }
 
+    public double interpolate(double xi) {
+        int n = x.length;
+        int k = Arrays.binarySearch(x, xi);
+        if (k < 0) {
+            k = -(k + 1);
+        }
+        k = Math.min(k, n - 2);
+        double hk = x[k + 1] - x[k];
+        double t = (xi - x[k]) / hk;
+        return a[k] + b[k] * t + c[k] * t * t + d[k] * t * t * t;
+    }
+
     public void printPolynomials() {
         for (int i = 1; i < n; i++) {
             System.out.println("Полином " + i + " интервала [" + x[i - 1] + ", " + x[i] + "]:");

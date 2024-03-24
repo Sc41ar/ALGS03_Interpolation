@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9f73a150-6a86-4b13-adab-32e89e8a3d4d" name="Changes" comment="лучший со фар, но гладкости до сих пор нет">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ArgsParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ArgsParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/SplineCompute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/SplineCompute.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +40,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Debug",
+    "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -51,7 +53,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
       <module name="ALGS03" />
-      <option name="PROGRAM_PARAMETERS" value="-f" />
+      <option name="PROGRAM_PARAMETERS" value="-t &quot;table.txt&quot;" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.example.*" />
