@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f73a150-6a86-4b13-adab-32e89e8a3d4d" name="Changes" comment="Переделать надо">
+    <list default="true" id="9f73a150-6a86-4b13-adab-32e89e8a3d4d" name="Changes" comment="gjkyfz [eqyz">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ArgsParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ArgsParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/SplineCompute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/SplineCompute.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -14,6 +15,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="newDesign" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="MIXED" />
   </component>
@@ -34,11 +40,11 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Run",
+    "Application.Main.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "newDesign",
+    "git-widget-placeholder": "spline",
     "kotlin-language-version-configured": "true",
     "onboarding.tips.debug.path": "D:/proj/MavenP/ALGS03/src/main/java/org/example/Main.java"
   }
@@ -47,7 +53,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
       <module name="ALGS03" />
-      <option name="PROGRAM_PARAMETERS" value="-t &quot;table.txt&quot;" />
+      <option name="PROGRAM_PARAMETERS" value="-f" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.example.*" />
@@ -60,6 +66,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -112,7 +121,31 @@
       <option name="project" value="LOCAL" />
       <updated>1711117608746</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="yb[ez yt gjkexbkjcm">
+      <option name="closed" value="true" />
+      <created>1711271285897</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1711271285897</updated>
+    </task>
+    <task id="LOCAL-00006" summary="e">
+      <option name="closed" value="true" />
+      <created>1711271995712</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1711271995712</updated>
+    </task>
+    <task id="LOCAL-00007" summary="gjkyfz [eqyz">
+      <option name="closed" value="true" />
+      <created>1711273692929</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1711273692929</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -131,7 +164,10 @@
     <MESSAGE value="пытаюс" />
     <MESSAGE value="probuem" />
     <MESSAGE value="Переделать надо" />
-    <option name="LAST_COMMIT_MESSAGE" value="Переделать надо" />
+    <MESSAGE value="yb[ez yt gjkexbkjcm" />
+    <MESSAGE value="e" />
+    <MESSAGE value="gjkyfz [eqyz" />
+    <option name="LAST_COMMIT_MESSAGE" value="gjkyfz [eqyz" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -140,6 +176,21 @@
           <url>file://$PROJECT_DIR$/src/main/java/org/example/SplineCompute.java</url>
           <line>4</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/SplineCompute.java</url>
+          <line>100</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/SplineCompute.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/SplineCompute.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

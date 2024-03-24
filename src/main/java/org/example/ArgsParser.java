@@ -22,8 +22,6 @@ public class ArgsParser {
                         Scanner s = new Scanner(System.in);
                         var input = s.nextDouble();
                         double y = splineCompute.interpolate(input);
-                        //TODO добавить вывод сплайнов
-                        System.out.println(y);
                     } else {
                         System.out.println("Ошибка при вводе файла таблицы");
                     }
@@ -84,25 +82,25 @@ public class ArgsParser {
                     //поэтому funcValues изменится
                     calcFuncValues(funcArgs, funcValues, cFunc);
                     System.out.println(Arrays.toString(funcValues));
-                    SplineCompute lagComputer = new SplineCompute(funcArgs, funcValues);
-//                    System.out.println(lagComputer.getInterpolationPolynomial());
+                    SplineCompute splineCompute = new SplineCompute(funcArgs, funcValues);
+                    splineCompute.printPolynomials();
                     var valuesclone = funcValues.clone();
                     for (int j = 0; j < funcArgs.length; j++) {
                         List<Double> a = new ArrayList<>(Arrays.stream(funcArgs).boxed().toList());
                         a.remove(j);
                         Double[] arrayTempCopy = a.toArray(new Double[0]);
-//                        lagComputer.setArgs(arrayTempCopy);
+                        splineCompute.setX(arrayTempCopy);
                         List<Double> b = new ArrayList<>(Arrays.stream(funcValues).boxed().toList());
                         b.remove(j);
                         Double[] arrayCopy = b.toArray(b.toArray(new Double[0]));
-//                        lagComputer.setValues(arrayCopy);
-//                        valuesclone[j] = lagComputer.computeValueAtPoint(funcArgs[j]);
+                        splineCompute.setY(arrayCopy);
+                        valuesclone[j] = splineCompute.interpolate(funcArgs[j]);
                     }
                     //Используя потоки производим операции вычисления отклонения над всеми значениями
                     double[] deviation = IntStream.range(0, funcValues.length)
                             .mapToDouble(j -> Math.abs(valuesclone[j] - funcValues[j]))
                             .toArray();
-                    System.out.println("Вычисленные отклонения: "+Arrays.toString(deviation));
+                    System.out.println("Вычисленные отклонения: " + Arrays.toString(deviation));
                 }
             }
         }

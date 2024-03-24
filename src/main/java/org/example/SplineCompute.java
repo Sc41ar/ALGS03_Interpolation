@@ -19,17 +19,16 @@ public class SplineCompute {
         n = x.length;
         h = new double[n];
         a = new double[n];
-        b = new double[n - 1];
-        c = new double[n - 1];
-        d = new double[n - 1];
+        b = new double[n + 1];
+        c = new double[n + 1];
+        d = new double[n + 1];
+
+        a = y.clone();
 
         // Вычисляем шаги h
         for (int i = 1; i < n; i++) {
             h[i - 1] = x[i] - x[i - 1];
         }
-
-        // Вычисляем коэффициенты a
-        a = y.clone();
 
         double[] cRightPart = new double[n - 1];
         for (int i = 1; i < n - 1; i++) {
@@ -49,19 +48,26 @@ public class SplineCompute {
                 uD[i] = h[i + 1];
             }
         }
-        c = solveTridiagonalSystem(mD, lD, uD, cRightPart);
+        solveTridiagonalSystem(mD, lD, uD, cRightPart);
         for (int i = n - 2; i > 0; i--) {
             b[i] = (a[i] - a[i - 1]) / h[i] - h[i] * (c[i] + 2.0 * c[i - 1]) / 3.0;
             d[i] = (c[i] - c[i - 1]) / (3.0 * h[i]);
         }
-
-
+        b[0] = (a[1] - a[0]) / h[0] - h[0] * (c[1] + 2.0 * c[0]) / 3.0;
+        d[0] = (c[1] - c[0]) / (3.0 * h[0]);
     }
 
-    private double[] solveTridiagonalSystem(double[] mainDiag, double[] lowerDiag, double[] upperDiag, double[] rightPart) {
-        double[] alph = new double[n - 1];
-        double[] beta = new double[n - 1];
-        double[] x = new double[n - 1];
+    public void setX(Double[] x) {
+        this.x = Arrays.stream(x).mapToDouble(Double::doubleValue).toArray();
+    }
+
+    public void setY(Double[] y) {
+        this.y = Arrays.stream(y).mapToDouble(Double::doubleValue).toArray();
+    }
+
+    private void solveTridiagonalSystem(double[] mainDiag, double[] lowerDiag, double[] upperDiag, double[] rightPart) {
+        double[] alph = new double[n];
+        double[] beta = new double[n];
         int i;
 
         alph[0] = -upperDiag[0] / mainDiag[0];
@@ -71,12 +77,11 @@ public class SplineCompute {
             alph[i] = -upperDiag[i] / (mainDiag[i] + lowerDiag[i] * alph[i - 1]);
             beta[i] = (rightPart[i] - lowerDiag[i] * beta[i - 1]) / (mainDiag[i] + lowerDiag[i] * alph[i - 1]);
         }
-        x[n - 2] = (rightPart[n - 2] - lowerDiag[n - 2] * beta[n - 2]) / (mainDiag[n - 2] + lowerDiag[n - 2] * alph[n - 2]);
+        c[n - 2] = (rightPart[n - 2] - lowerDiag[n - 2] * beta[n - 2]) / (mainDiag[n - 2] + lowerDiag[n - 2] * alph[n - 2]);
 
         for (i = n - 3; i > -1; i--) {
-            x[i] = x[i + 1] * alph[i] + beta[i];
+            c[i] = c[i + 1] * alph[i] + beta[i];
         }
-        return x;
     }
 
 
@@ -93,9 +98,9 @@ public class SplineCompute {
     }
 
     public void printPolynomials() {
-        for (int i = 0; i < n - 1; i++) {
-            System.out.println("Polynomial " + i + " for interval [" + x[i] + ", " + x[i + 1] + "]:");
-            System.out.println("f(x) = " + a[i] + " + " + b[i] + " * (x - " + x[i] + ") + " + c[i] + " * (x - " + x[i] + ")^2 + " + d[i] + " * (x - " + x[i] + ")^3");
+        for (int i = 1; i < n; i++) {
+            System.out.println("Полином " + i + " интервала [" + x[i - 1] + ", " + x[i] + "]:");
+            System.out.println("f(x) = " + a[i - 1] + " + " + b[i - 1] + " * (x - " + x[i - 1] + ") + " + c[i - 1] + " * (x - " + x[i - 1] + ")^2 + " + d[i - 1] + " * (x - " + x[i - 1] + ")^3");
         }
     }
 
