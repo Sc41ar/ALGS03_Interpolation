@@ -39,11 +39,11 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Run",
+    "Application.Main.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "spline",
+    "git-widget-placeholder": "newDesign",
     "kotlin-language-version-configured": "true",
     "onboarding.tips.debug.path": "D:/proj/MavenP/ALGS03/src/main/java/org/example/Main.java"
   }
@@ -187,17 +187,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/SplineCompute.java</url>
-          <line>101</line>
+          <line>107</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/SplineCompute.java</url>
-          <line>50</line>
+          <line>52</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/SplineCompute.java</url>
-          <line>33</line>
+          <line>35</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>

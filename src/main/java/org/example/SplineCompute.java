@@ -21,18 +21,20 @@ public class SplineCompute {
         a = new double[n];
         b = new double[n];
         c = new double[n];
-        d = new double[n] ;
+        d = new double[n];
 
-        a = y.clone();
+        for (int i = 1; i < n - 1; i++) {
+            a[i] = y[i - 1];
+        }
 
         // Вычисляем шаги h
         for (int i = 1; i < n; i++) {
-            h[i - 1] = x[i] - x[i - 1];
+            h[i] = x[i] - x[i - 1];
         }
 
         double[] cRightPart = new double[n - 1];
         for (int i = 1; i < n - 1; i++) {
-            cRightPart[i] = 3.0 * ((a[i + 1] - a[i]) / h[i] - (a[i] - a[i - 1]) / h[i - 1]);
+            cRightPart[i] = 3.0 * ((a[i + 1] - a[i]) / h[i + 1] - (a[i] - a[i - 1]) / h[i]);
         }
         //задаем значения для трехдиагональной матрицы
         double[] mD = new double[n - 1];
@@ -49,13 +51,17 @@ public class SplineCompute {
             }
         }
         solveTridiagonalSystem(mD, lD, uD, cRightPart);
-        c[0] = c[n-1] = 0;
-        for (int i = n - 2; i > 0; i--) {
-            b[i] = (a[i] - a[i - 1]) / h[i] - h[i] * (c[i] + 2.0 * c[i - 1]) / 3.0;
-            d[i] = (c[i] - c[i - 1]) / (3.0 * h[i]);
+        c[0] = 0;
+//        for (int i = n - 2; i > 0; i--) {
+//            b[i] = (a[i] - a[i - 1]) / h[i] - h[i] * (c[i] + 2.0 * c[i - 1]) / 3.0;
+//            d[i] = (c[i] - c[i - 1]) / (3.0 * h[i]);
+//        }
+        for (int i = 1; i < n - 1; i++) {
+            b[i] = (y[i] - y[i - 1]) / h[i] - (c[i + 1] + 2 * c[i]) * h[i] / 3;
+            d[i] = (c[i+1] - c[i]) / (3 * h[i]);
         }
-        b[0] = (a[1] - a[0]) / h[0] - h[0] * (c[1] + 2.0 * c[0]) / 3.0;
-        d[0] = (c[1] - c[0]) / (3.0 * h[0]);
+        b[n - 1] = (y[n - 1] - y[n - 2]) / h[n - 1] - 2 / 3 * h[n - 1] * c[n - 1];
+//        d[0] = (c[1] - c[0]) / (3.0 * h[0]);
     }
 
     public void setX(Double[] x) {
