@@ -19,9 +19,9 @@ public class SplineCompute {
         n = x.length;
         h = new double[n];
         a = new double[n];
-        b = new double[n + 1];
-        c = new double[n + 1];
-        d = new double[n + 1];
+        b = new double[n];
+        c = new double[n];
+        d = new double[n] ;
 
         a = y.clone();
 
@@ -49,6 +49,7 @@ public class SplineCompute {
             }
         }
         solveTridiagonalSystem(mD, lD, uD, cRightPart);
+        c[0] = c[n-1] = 0;
         for (int i = n - 2; i > 0; i--) {
             b[i] = (a[i] - a[i - 1]) / h[i] - h[i] * (c[i] + 2.0 * c[i - 1]) / 3.0;
             d[i] = (c[i] - c[i - 1]) / (3.0 * h[i]);
