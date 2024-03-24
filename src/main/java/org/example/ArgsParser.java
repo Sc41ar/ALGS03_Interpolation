@@ -22,6 +22,7 @@ public class ArgsParser {
                         Scanner s = new Scanner(System.in);
                         var input = s.nextDouble();
                         double y = splineCompute.interpolate(input);
+                        System.out.println(y);
                     } else {
                         System.out.println("Ошибка при вводе файла таблицы");
                     }

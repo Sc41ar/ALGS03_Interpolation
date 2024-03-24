@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f73a150-6a86-4b13-adab-32e89e8a3d4d" name="Changes" comment="оть како-йто результат но si-1(x-1)!=si(xi-1)">
+    <list default="true" id="9f73a150-6a86-4b13-adab-32e89e8a3d4d" name="Changes" comment="лучший со фар, но гладкости до сих пор нет">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ArgsParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ArgsParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/SplineCompute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/SplineCompute.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -16,7 +17,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="newDesign" />
+        <entry key="$PROJECT_DIR$" value="spline" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -43,7 +44,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "spline",
+    "git-widget-placeholder": "newDesign",
     "kotlin-language-version-configured": "true",
     "onboarding.tips.debug.path": "D:/proj/MavenP/ALGS03/src/main/java/org/example/Main.java"
   }
@@ -52,7 +53,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
       <module name="ALGS03" />
-      <option name="PROGRAM_PARAMETERS" value="-f" />
+      <option name="PROGRAM_PARAMETERS" value="-t &quot;table.txt&quot;" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.example.*" />
@@ -65,6 +66,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
@@ -152,7 +154,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711274246600</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="лучший со фар, но гладкости до сих пор нет">
+      <option name="closed" value="true" />
+      <created>1711287672883</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1711287672883</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -175,32 +185,7 @@
     <MESSAGE value="e" />
     <MESSAGE value="gjkyfz [eqyz" />
     <MESSAGE value="оть како-йто результат но si-1(x-1)!=si(xi-1)" />
-    <option name="LAST_COMMIT_MESSAGE" value="оть како-йто результат но si-1(x-1)!=si(xi-1)" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/SplineCompute.java</url>
-          <line>4</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/SplineCompute.java</url>
-          <line>101</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/SplineCompute.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/SplineCompute.java</url>
-          <line>33</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="лучший со фар, но гладкости до сих пор нет" />
+    <option name="LAST_COMMIT_MESSAGE" value="лучший со фар, но гладкости до сих пор нет" />
   </component>
 </project>
