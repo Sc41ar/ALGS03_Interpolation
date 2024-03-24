@@ -18,13 +18,10 @@ public class ArgsParser {
                     if (lines.size() == 2) {
                         double[] funcArgs = fileParser.getArray(lines.get(0));
                         double[] funcValues = fileParser.getArray(lines.get(1));
-                        LagComputer lagComputer = new LagComputer(funcArgs, funcValues);
-                        //TODO добавить sout
+                        SplineCompute splineCompute = new SplineCompute(funcArgs, funcValues);
                         Scanner s = new Scanner(System.in);
                         var input = s.nextDouble();
-                        double y = lagComputer.computeValueAtPoint(input);
-                        System.out.println(lagComputer.getInterpolationPolynomial());
-                        System.out.println(y);
+                        double y = splineCompute.interpolate(input);
                     } else {
                         System.out.println("Ошибка при вводе файла таблицы");
                     }
@@ -85,25 +82,25 @@ public class ArgsParser {
                     //поэтому funcValues изменится
                     calcFuncValues(funcArgs, funcValues, cFunc);
                     System.out.println(Arrays.toString(funcValues));
-                    LagComputer lagComputer = new LagComputer(funcArgs, funcValues);
-                    System.out.println(lagComputer.getInterpolationPolynomial());
+                    SplineCompute splineCompute = new SplineCompute(funcArgs, funcValues);
+                    splineCompute.printPolynomials();
                     var valuesclone = funcValues.clone();
                     for (int j = 0; j < funcArgs.length; j++) {
                         List<Double> a = new ArrayList<>(Arrays.stream(funcArgs).boxed().toList());
                         a.remove(j);
                         Double[] arrayTempCopy = a.toArray(new Double[0]);
-                        lagComputer.setArgs(arrayTempCopy);
+                        splineCompute.setX(arrayTempCopy);
                         List<Double> b = new ArrayList<>(Arrays.stream(funcValues).boxed().toList());
                         b.remove(j);
                         Double[] arrayCopy = b.toArray(b.toArray(new Double[0]));
-                        lagComputer.setValues(arrayCopy);
-                        valuesclone[j] = lagComputer.computeValueAtPoint(funcArgs[j]);
+                        splineCompute.setY(arrayCopy);
+                        valuesclone[j] = splineCompute.interpolate(funcArgs[j]);
                     }
                     //Используя потоки производим операции вычисления отклонения над всеми значениями
                     double[] deviation = IntStream.range(0, funcValues.length)
                             .mapToDouble(j -> Math.abs(valuesclone[j] - funcValues[j]))
                             .toArray();
-                    System.out.println("Вычисленные отклонения: "+Arrays.toString(deviation));
+                    System.out.println("Вычисленные отклонения: " + Arrays.toString(deviation));
                 }
             }
         }
