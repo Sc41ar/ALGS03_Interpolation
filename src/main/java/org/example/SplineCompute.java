@@ -1,5 +1,12 @@
 package org.example;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.ui.ApplicationFrame;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
 import java.util.Arrays;
 
 public class SplineCompute {
@@ -103,6 +110,37 @@ public class SplineCompute {
             System.out.println("Полином " + i + " интервала [" + x[i - 1] + ", " + x[i] + "]:");
             System.out.println("f(x) = " + a[i - 1] + " + " + b[i - 1] + " * (x - " + x[i - 1] + ") + " + c[i - 1] + " * (x - " + x[i - 1] + ")^2 + " + d[i - 1] + " * (x - " + x[i - 1] + ")^3");
         }
+
+        createPlot();
+    }
+
+    public void createPlot() {
+        XYSeries originalData = new XYSeries("Функция");
+        for (int i = 0; i < x.length; i++) {
+            originalData.add(x[i], y[i]);
+        }
+
+        XYSeries interpolatedData = new XYSeries("Сплайн");
+        double step = (x[x.length - 1] - x[0]) / 100.0;
+        for (double i = x[0]; i <= x[x.length - 1]; i += step) {
+            interpolatedData.add(i, interpolate(i));
+        }
+
+        XYSeriesCollection dataset = new XYSeriesCollection();
+        dataset.addSeries(originalData);
+        dataset.addSeries(interpolatedData);
+
+        JFreeChart chart = ChartFactory.createXYLineChart(
+                "Интерполяция кубическими сплайнами",
+                "x",
+                "y",
+                dataset
+        );
+
+        ApplicationFrame frame = new ApplicationFrame("Интерполяция кубическими сплайнами");
+        frame.setContentPane(new ChartPanel(chart));
+        frame.pack();
+        frame.setVisible(true);
     }
 
 
